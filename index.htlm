@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <div id="logo"></div> <!-- Add this line -->
+    <div id="giveaway1"></div> <!-- Add this line -->
+    <title>CounterBet - Premier CSGO / Rust Gambling</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <header>
+      <h1></h1>
+    </header>
+    <style>
+      body {
+      overflow: hidden;
+      background-color: #1a1c24;
+      color: #fff;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    /* new code to make the left side of the screen a different background color */
+    body:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 15%;
+      height: 100%;
+      background-color: #1f2029;
+    }
+
+    header {
+      background-color: #24252f;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0px;
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: -999;
+    }
+
+    #logo {
+      position: absolute;
+      top: -50px;
+      left: -15px;
+      width: 215px; /* adjust the size as needed */
+      height: 215px; /* adjust the size as needed */
+      background-image: url('logo.png'); /* replace 'logo.png' with your logo's filename */
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    #balance {
+      font-size: 30px;
+      font-weight: 750;
+      margin-bottom: 20px;
+      position: absolute;
+      top: -0.7%;
+      right: 0;
+      padding: 20px;
+      outline-width: 20px;
+      outline: black;
+      color: red;
+      text-align: right;
+      display: inline-block;
+    }
+
+    #betAmount {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      background-color: #171721;
+      color: #ffffff;
+      border: none;
+    }
+
+    #input-field {
+      font-size: 20px;
+      height: 60px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      background-color: #171721;
+      color: #ffffff;
+      border: none;
+      bottom: -2%;
+      right: 0%;
+      position: absolute;
+      text-align: center;
+    }
+
+    #coin {
+      background-image: url('coin.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+
+    #coin.animate {
+      animation: flip 1s forwards;
+    }
+
+    #discord-button {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      position: absolute;
+      bottom: 0;
+      left: 1%;
+      padding: 20px;
+      background-color: #e72d31;
+      outline: none;
+      color: white;
+    }
+
+    #deposit-withdraw-button{
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      position: absolute;
+      top: 0;
+      padding: 20px;
+      background-color: #e72d31;
+      outline: none;
+      color: white;
+    }
+
+    #coinflip-button {
+      font-size: 15.5px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      position: absolute;
+      top: 0;
+      left: 15%;
+      padding: 20px;
+      background-color: #24252f;
+      outline: none;
+      color: white;
+    }
+    
+    #roulette-button {
+      font-size: 15.5px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      position: absolute;
+      top: 0;
+      left: 25%;
+      padding: 20px;
+      background-color: #24252f;
+      outline: none;
+      color: white;
+    }
+
+    #giveaway1-button{
+      font-size: 17.5px;
+      margin-bottom: 20px;
+      position: absolute;
+      top: 90%;
+      left: 0.45%;
+      padding: 20px;
+      color: rgb(255, 255, 255);
+    }
+
+    #giveaway2-button{
+      font-size: 17.5px;
+      margin-bottom: 20px;
+      position: absolute;
+      top: 67.5%;
+      left: 0.5%;
+      padding: 20px;
+      color: rgb(255, 255, 255);
+      background-color: transparent;
+    }
+
+    @keyframes flip {
+      0% {
+        transform: rotateY(0deg);
+      }
+      50% {
+        transform: rotateY(180deg);
+      }
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
+    button {
+      background-color: #e72d31;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #611414;
+      cursor: not-allowed;
+    }
+
+    label {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .my-image {
+      width: 15%;
+      left: 0%;
+      top: 70%;
+      position: absolute;
+    }
+      
+    </style>
+  </head>
+  <body>
+    <div id="balance">0</div>
+    <div id="coin"></div>
+    <div class="logo"></div>
+    <div class="chipslogo"></div>
+    <div class="red-box"></div>
+
+    <label for="betAmount">Enter bet amount:</label>
+    <input type="number" id="betAmount" name="betAmount" min="" step="" value="">
+    <input type="text" id="input-field" name="inputField" min="" step="" value="Enter Code">
+    <button id="flip">Flip coin</button>
+    <button id="discord-button">Discord</button>
+    <button id="coinflip-button">Coinlip</button>
+    <button id="giveaway2-button">Giveaway | USP Blueprint (FN)</button>
+
+    <button id="deposit-withdraw-button">Deposit / Withdraw</button>
+    
+    <img src="usps.png" alt="Image description" class="my-image">
+    
+    <audio id="coin-sound" src="coin-sound.mp3"></audio>
+    <script>
+        const balanceEl = document.getElementById('balance');
+        const coinEl = document.getElementById('coin');
+        const flipBtn = document.getElementById('flip');
+        const coinSound = document.getElementById('coin-sound');
+        const betAmountEl = document.getElementById('betAmount');
+        const inputField = document.getElementById('input-field');
+
+        const discordBtn = document.getElementById("discord-button");
+        const coinflipBtn = document.getElementById("coinflip-button");
+        const roulleteBtn = document.getElementById("roulette-button");
+        const depositwithdrawBtn = document.getElementById("deposit-withdraw-button");
+    
+        let balance = parseFloat(localStorage.getItem('siteBalance')) || 0;
+        balanceEl.textContent = `${balance.toFixed(2)}`;
+    
+        if (localStorage.getItem('tiktokRedeemed')) {
+          inputField.disabled = true;
+        }
+
+        localStorage.setItem('siteBalance', balance);
+    
+        flipBtn.addEventListener('click', () => {
+        const betAmount = parseFloat(betAmountEl.value);
+         
+        if (balance >= betAmount) {
+          if(betAmount >= 0.10) {
+            balance -= betAmount;
+            balanceEl.textContent = `${balance.toFixed(2)}`;
+            coinEl.classList.add('animate');
+            flipBtn.disabled = true;
+            coinSound.play();
+            setTimeout(() => {
+            const result = Math.random() < 0.5;
+            if (result) {
+                balance += betAmount * 2;
+                balanceEl.textContent = `${balance.toFixed(2)}`;
+                alert(`You won $${betAmount * 2}`);
+                } else {
+                    alert(`You lost $${betAmount}`);
+                }
+                    coinEl.classList.remove('animate');
+                    flipBtn.disabled = false;
+                    localStorage.setItem('siteBalance', balance);
+                }, 1000);
+            } else {
+                alert('Not enough balance, deposit more!');
+            }
+          }
+        });
+    
+        if (localStorage.getItem('inputFieldDisabled') === 'true') {
+          inputField.disabled = true;
+        }
+    
+        inputField.addEventListener('input', function() {
+          if (inputField.value.includes('tiktok')) {
+            balance += 0.50;
+            balanceEl.textContent = `${balance.toFixed(2)}`;
+            inputField.disabled = true;
+            localStorage.setItem('inputFieldDisabled', true);
+          }
+        });
+
+        discordBtn.addEventListener('click', () => {
+            window.location.href = 'https://discord.gg/hAPFtjUWNh';
+        });
+
+        depositwithdrawBtn.addEventListener('click', () => {
+            window.location.href = 'https://discord.gg/hAPFtjUWNh';
+        });
+
+        coinflipBtn.addEventListener("click", () => {
+            //window.location.href = "coinflip.html";
+        });
+
+        roulleteBtn.addEventListener("click", () => {
+        document.body.style.opacity = 0;
+            setTimeout(() => {
+                window.location.href = "roulette.html";
+        }, 750);
+    });
+      </script>
